@@ -7,6 +7,7 @@
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
 // const hre = require("hardhat");
+// const { ethers } = require('ethers');
 
 async function main() {
   console.log("main");
@@ -21,6 +22,7 @@ async function main() {
     const DegreeNFTSmartContract = await ethers.getContractFactory("NFTDegree");
     const _DegreeNftSC = await DegreeNFTSmartContract.deploy();
     saveFilesABI(_DegreeNftSC, "NFTDegree");
+    //verifiedContract(_DegreeNftSC.address);
     console.log("Address Contrato:", _DegreeNftSC.address);
 
     console.log("**** DESPLEGADO CORRECTAMENTE ****");
@@ -53,7 +55,14 @@ function saveFilesABI(contract, name) {
   }
 }
 
-
+async function verifiedContract(contractAddress) {
+  try {
+    const contract = await ethers.getVerifiedContractAt(contractAddress);
+    console.log("**** VERIFICADO CORRECTAMENTE ****");
+  } catch (err) {
+    console.error("main.verifiedContract error: ", err);
+  }
+}
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
