@@ -22,7 +22,6 @@ async function main() {
     const DegreeNFTSmartContract = await ethers.getContractFactory("NFTDegree");
     const _DegreeNftSC = await DegreeNFTSmartContract.deploy();
     saveFilesABI(_DegreeNftSC, "NFTDegree");
-    //verifiedContract(_DegreeNftSC.address);
     console.log("Address Contrato:", _DegreeNftSC.address);
 
     console.log("**** DESPLEGADO CORRECTAMENTE ****");
@@ -52,15 +51,6 @@ function saveFilesABI(contract, name) {
     );
   } catch (err) {
     console.error("main.saveFilesABI error: ", err);
-  }
-}
-
-async function verifiedContract(contractAddress) {
-  try {
-    const contract = await ethers.getVerifiedContractAt(contractAddress);
-    console.log("**** VERIFICADO CORRECTAMENTE ****");
-  } catch (err) {
-    console.error("main.verifiedContract error: ", err);
   }
 }
 

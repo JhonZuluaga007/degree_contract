@@ -10,4 +10,7 @@ npx hardhat test
 REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
+npx hardhat run scripts/deploy.ts --network goerli
+npx hardhat verify --network goerli <address> <unlock time>
+
 ```
